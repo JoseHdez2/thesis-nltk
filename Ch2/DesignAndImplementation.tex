@@ -2,8 +2,9 @@
 
 El primer paso para realizar el Procesamiento del Lenguaje Natural consiste en obtenerlo. Normalmente se busca extraer información de una fuente para poder explotarla y obtener el texto a procesar.
 %
-En nuestro caso de estudio, se utilizó como fuente el Repositorio Institucional de la Universidad de La Laguna (RIULL), conteniendo ésta los documentos que se deseaban explotar.
+En nuestro caso de estudio, la obtención de información se centró en los Trabajos de Fin de Grado (TFG), usando como fuente de información el Repositorio Institucional de la Universidad de La Laguna (RIULL).
 %
+El procedimiento utilizado para la obtención de información referente a estos documentos fue el uso de una herramienta de \textit{web scraping} sobre la página web de la RIULL, cuyo uso se explica a continuación.
 %Se consideró descargar los Trabajos de Fin de Grado (TFG) en formato PostScript (extensión ".pdf"), lo que luego fue descartado debido a ...
 
 \subsection{Obtención de datos con CasperJS}
@@ -12,7 +13,7 @@ En nuestro caso de estudio, se utilizó como fuente el Repositorio Institucional
 
 % Otra razón por la cual fue descartada la extracción de texto a partir de PDF es la imperfección de las herramientas actuales de transcripción de PDF generales, por lo que habría hecho falta la adaptación de un programa similar que considerase las características particulares de los trabajos de fin de grado del caso de estudio, lo que no se mostró como una opción práctica a la hora de realizar el estudio.
 
-El proceso de obtención de datos se basó en el uso de la herramienta software CasperJS \cite{casper-js} para simular una navegación y recabar datos de las páginas web del RIULL de manera automatizada.
+El proceso de obtención de datos se basó en el uso de la herramienta software CasperJS \cite{casperjs} para simular una navegación y recabar datos de las páginas web del RIULL de manera automatizada.
 %
 La herramienta actúa de la misma manera que un navegador de uso personal, enviando peticiones HTTP, recibiendo información y prosiguiendo de la manera que se le haya indicado.
 En este caso se implementó la recogida de datos partiendo de la página en la que se muestran los TFG por orden de publicación, y se realiza la paginación hasta haber recuperado los enlaces individuales para cada uno de los TFG.
