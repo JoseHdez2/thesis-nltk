@@ -1,0 +1,25 @@
+\lhead{\emph{\ChapterFour{}}}
+
+\subsection{Obtención del texto}
+
+Uno de los problemas a la hora de realizar la extracción de texto en la página del Repositorio Institucional de la ULL se producía cuando se realizaba un número excesivo de consultas a la página. Esto provocaba que las peticiones enviadas desde la IP del ordenador de pruebas fuesen ignoradas por el servidor. Se puede conjeturar que esto sea resultado de un mecanismo de defensa del servidor institucional para contrarrestar ataques DoS (\textit{Denial of Service}). 
+\todo{
+Esto provocaba una interrupción en el flujo de trabajo, impidiendo la obtención de datos hasta 
+}
+
+\subsection{Clasificación del texto}
+
+% Para la clasificación de los textos DURANTE LA PRIMERA APROXIMACION
+Para la clasificación de los textos, uno de los problemas más importantes fue el exceso de clases en comparación con el número de instancias. Muchas de estas clases contenían a un único elemento, lo que dificultaba el proceso de clasificación al no obtener suficiente información determinante para caracterizar cada tipo de clase.
+
+\subsection{Realización de la memoria}
+
+% Fue necesario implantar un paquete \LaTeX{}
+Fue necesario incluir un paquete \textit{LaTeX} en la configuración del proyecto para permitir el uso de tildes y caracteres españoles.
+
+A la hora de mostrar el código del trabajo realizado, el primer método utilizado fue la realización de capturas del código en el editor de texto, para incrustarlas en el documento como imágenes.
+Esto conllevaba una pérdida de uniformidad, debido al diferente tamaño de las imágenes, así como la dificultad a la hora de cambiar la apariencia de las mismas.
+
+Como alternativa, se utilizó un paquete \textit{LaTeX} conocido como \textit{listings}, que permite la introducción de código con formato, y proporciona funcionalidad que ayuda a su lectura como el resaltado (\textit{highlighting}) de palabras reservadas.
+
+Tuvo que ser modificado para permitir el resaltado de código JavaScript, que no venía por defecto, y también 

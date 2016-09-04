@@ -1,0 +1,51 @@
+\chapter{\ChapterTwo{}} \label{amigo}
+\lhead{\emph{\ChapterTwo{}}}
+
+\section{Opciones de clasificación}
+
+La clasificación de textos es un subproblema del campo del Procesamiento del Lenguaje Natural, entre muchos otros como aquéllos discutidos en el capítulo anterior (\ref{amigo}).
+%
+Fue escogido debido a la facilidad y rapidez de su implementación con las herramientas disponibles a día de hoy, entre ellas el NLTK.
+%
+Existen varias formas de realizar la clasificación de un texto, todas claramente atendiendo a las características del mismo, pero utilizando diferentes enfoques.
+%
+En las siguientes secciones pasamos a describir los enfoques más utilizados para ello.
+
+\subsection{Enfoques estadísticos}
+
+\input{Ch2/StatisticalApproach}
+
+\subsection{Naive Bayes}
+
+\input{Ch2/NaiveBayes}
+
+\section{Enfoques analíticos}
+
+\input{Ch2/AnalyticalApproach}
+
+\section{Trabajos de Fin de Grado en la ULL: ¿Qué revela el análisis automático de texto sobre los mismos?}
+En nuestro caso de estudio, se utilizó como fuente el Repositorio Institucional de la Universidad de La Laguna (RIULL), conteniendo ésta los documentos que se deseaban explotar.
+
+%Como se explicó en el anterior capítulo, se consideró descargar los Trabajos de Fin de Grado en formato PDF, lo que luego fue descartado debido al alto coste de procesar una gran cantidad de PDFs y el hecho de tener que implementar una herramienta de transformación a texto plano en la cadena de automatización de procesamiento de texto.
+
+%Otra razón por la cual fue descartada la extracción de texto a partir de PDF es la imperfección de las herramientas actuales de transcripción de PDF generales, por lo que habría hecho falta la adaptación de un programa similar que considerase las características particulares de cada uno de los Trabajos de Fin de Grado del caso de estudio, lo que no se mostró como una opción práctica a la hora de realizar el estudio.
+
+% cambiar este parrafo...
+% Una vez concluido el estudio previo de lenguaje y herramientas, se procede al desarrollo de un sistema que cumpla con los objetivos propuestos. Ha sido un proceso incremental, puesto que o bien han fallado algunas ideas o bien otras que sí han estado correctas han necesitado de un aumento constante de la funcionalidad. 
+
+Se ha realizado un desarrollo en base a aproximaciones, cada una de ellas con resultados que han sido comparados entre sí para constatar su eficacia.
+
+\section{Obtención de datos}
+\input{Ch2/DesignAndImplementation}
+
+\input{Ch2/CodeRetrieval}
+
+%Como primer paso, se le proporciona al navegador CasperJS la página inicial, hacia la cual deberá navegar para iniciar el proceso de extracción. En este caso, es la página que muestra los Trabajos de Fin de Grado para los alumnos del Grado de Informática.
+
+%Una vez en la página de los trabajos de fin de grado, el navegador CasperJS fue programado para obtener los enlaces que le llevarían a las páginas individuales de cada uno de los TFG.
+
+\subsection{Almacenamiento de la información}
+\input{Ch2/DataStorage}
+
+\subsection{Clasificación del texto}
+\input{Ch2/CodeClassification}

@@ -1,0 +1,21 @@
+La extracción de información fue implementada utilizando selectores de jQuery, para la obtención de los elementos que contienen la información que nos interesa de la vista presente.
+
+Es evidente que este acercamiento es ciertamente inestable, y aumenta la necesidad de mantener el código, debido a que se basa en la jerarquía HTML y estilos CSS de la página que nos es devuelta en una respuesta HTTP. Esta vista puede ser modificada en cualquier momento por los administradores o propietarios de una página web, rompiendo la dependencia y con ella la extracción automatizada. 
+
+En el caso de realizar la extracción de texto en otras páginas web, o incluso la misma página si en un futuro es modificada su vista, deberá modificarse el programa para adaptarse a las nuevas características y disposición que tomen los elementos que contengan la información, siendo esto incómodo y poco óptimo.
+
+Sin embargo, es la única forma de extraer información de una página, servicio, o aplicación web que no disponga de una API (\textit{Application Programming Interface}) que presente la información de manera independiente a la vista o interfaz de usuario.
+
+Otra ventaja del uso de APIs es que evita al interesado descargar la página al completo, de manera que evita descargar archivos pesados que puedan existir en la vista como imágenes, anuncios y etc.
+
+%Esto hace que la implementación de una API también sea preferible para los propietarios de páginas web, porque de la misma manera ahorran el ancho de banda.
+%
+%Como consecuencia de esto, una API es preferible para los propietarios de las páginas porque evitan consumir su ancho de banda de forma innecesaria, así como para los usuarios de herramientas programáticas por razones anteriormente mencionadas.
+
+%(... creo que habia gente que estaba apostando por una web mas semantica y navegable por maquinas, pero no me lo quiero inventar demasiado...)
+
+A día de hoy, la gran mayoría de páginas y aplicaciones web no poseen una API subyacente, en gran parte debido a la falta de necesidad que se tiene de ello, ya que no están pensadas para obtener la información mediante métodos programáticos.
+
+Es ideal que todo servicio o página web disponga de una API como punto de entrada de datos a una aplicación, pero en su defecto también es factible que en la vista se realice un etiquetado semántico de los elementos, ya sea mediante HTML o CSS, proporcionando cierta autonomía de la vista de la página.
+
+A pesar de esto, en la mayoría de los casos los administradores y propietarios de las páginas web no tienen incentivos ni necesidad de suplir esta necesidad, por lo que se deberá seguir utilizando estas técnicas de extracción de datos o \textit{web scraping}.

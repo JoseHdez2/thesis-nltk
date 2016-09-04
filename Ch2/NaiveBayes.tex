@@ -1,0 +1,18 @@
+Los clasificadores de Bayes ingenuos (\textit{Naive Bayes classifiers}) son clasificadores utilizados ampliamente en la actualidad para problemas de clasificación de textos, tanto en ámbitos académicos como industriales.
+
+Los caracteriza una gran simplicidad, que conlleva la ventaja de que son de fácil comprensión y por tanto de fácil uso.
+
+A pesar de esta simplicidad, los clasificadores de Bayes ingenuos son bastante eficaces y tienen una gran cantidad de aplicaciones prácticas.
+
+Los clasificadores de Bayes ingenuos se basan en un modelo probabilístico, el Teorema de Bayes.
+
+\begin{equation}\label{eq:bayes}
+    p(C_k|x) = \frac{p(C_k)p(x|C_k)}{p(x)}
+\end{equation}
+
+Según este teorema, la probabilidad de un suceso $C_k$, dada una situación $x$ viene determinada por el número de veces que se ha producido el suceso $C_k$ en esa situación $x$, dividido por el número de veces total que se ha encontrado esta situación $x$
+(Eq. \ref{eq:bayes}).
+
+Aplicados al problema de la clasificación, nos permite inferir la posibilidad que tiene un elemento de pertenecer a cada una de las clases consideradas, teniendo en cuenta cada una de las características de este elemento como un suceso a priori.
+
+Los clasificadores de Bayes ingenuos reciben su nombre debido a que toman en cuenta la contribución de cada característica hacia la posibilidad de una clasificación de manera independiente, en contraposición a correlacionar varias características para realizar una estimación más precisa a la hora de clasificar un elemento.

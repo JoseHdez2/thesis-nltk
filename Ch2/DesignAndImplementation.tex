@@ -1,0 +1,24 @@
+%\section{Obtención de datos}
+
+El primer paso para realizar el Procesamiento del Lenguaje Natural consiste en obtenerlo. Normalmente se busca extraer información de una fuente para poder explotarla y obtener el texto a procesar.
+%
+En nuestro caso de estudio, se utilizó como fuente el Repositorio Institucional de la Universidad de La Laguna (RIULL), conteniendo ésta los documentos que se deseaban explotar.
+%
+%Se consideró descargar los Trabajos de Fin de Grado (TFG) en formato PostScript (extensión ".pdf"), lo que luego fue descartado debido a ...
+
+\subsection{Obtención de datos con CasperJS}
+
+% Como se explicó en el anterior capítulo, se consideró descargar los Trabajos de Fin de Grado en formato PDF, lo que luego fue descartado debido al alto coste de procesar una gran cantidad de PDFs y el hecho de tener que implementar una herramienta de transformación a texto plano en la cadena de automatización de procesamiento de texto.
+
+% Otra razón por la cual fue descartada la extracción de texto a partir de PDF es la imperfección de las herramientas actuales de transcripción de PDF generales, por lo que habría hecho falta la adaptación de un programa similar que considerase las características particulares de los trabajos de fin de grado del caso de estudio, lo que no se mostró como una opción práctica a la hora de realizar el estudio.
+
+El proceso de obtención de datos se basó en el uso de la herramienta software CasperJS \cite{casper-js} para simular una navegación y recabar datos de las páginas web del RIULL de manera automatizada.
+%
+La herramienta actúa de la misma manera que un navegador de uso personal, enviando peticiones HTTP, recibiendo información y prosiguiendo de la manera que se le haya indicado.
+En este caso se implementó la recogida de datos partiendo de la página en la que se muestran los TFG por orden de publicación, y se realiza la paginación hasta haber recuperado los enlaces individuales para cada uno de los TFG.
+
+Es entonces cuando se procede a la extracción de los metadatos de cada página individual de TFG, obteniendo los datos relevantes de cada TFG como su título, descripción y clasificación.
+
+\subsection{Extracción de la información}
+
+CasperJS trabaja mediante la ejecución de un \textit{script}(guión) en lenguaje JavaScript, que le es proporcionado como entrada.

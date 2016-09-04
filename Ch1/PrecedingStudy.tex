@@ -1,0 +1,81 @@
+El estudio previo de las opciones a considerar a la hora escoger las herramientas para realizar el proyecto ha ocupado una gran parte del tiempo dedicado.
+
+Esto es en parte debido a la gran cantidad de herramientas disponibles para la tarea a realizar: existen decenas de herramientas para el Procesamiento del Lenguaje Natural, y cientos para la extracción de texto a partir de fuentes en Internet.
+
+Para realizar el trabajo se han considerado varias herramientas, teniendo en cuenta puntos como la facilidad de uso, la adaptabilidad de la herramienta, su capacidad de procesamiento, las posibilidades de ser utilizada con entradas de texto en español, etc.
+
+\section{Herramientas de PLN}
+
+Se consideró un número de herramientas para el Procesamiento del Lenguaje Natural, las cuales fueron evaluadas según las ventajas y desventajas que proporcionarían al desarrollo del proyecto teniendo en cuenta los objetivos que se deseaban alcanzar.
+
+La herramienta utilizada en este caso es la biblioteca NLTK (Natural Language Toolkit) desarrollada en el lenguaje de programación Python, pero es necesario conocer las decisiones que llevaron a esta conclusión.
+
+A continuación se muestran las herramientas consideradas para el Procesamiento del Lenguaje Natural en la realización de este trabajo.
+
+\subsection{Stanford CoreNLP}
+
+Se trata de una herramienta de Procesamiento de Lenguaje Natural implementada en Java por la Universidad de Stanford.
+%
+%(Ha sido implementada en Java, y la ...entrega... actual requiere Java 1.8+).
+%
+Fue una de las herramientas de mayor importancia a considerar, debido a la familiaridad que se tenía con la metodología de trabajo a la hora de utilizarlo.
+%
+Actualmente cuentan con modelos lingüísticos para el chino, inglés, francés, alemán, y español, el idioma objetivo de este trabajo.
+%
+Una de las principales ventajas de esta herramienta es su implementación en Java, un lenguaje de más bajo nivel que Python o Ruby, lo que le proporciona una mayor capacidad de cómputo de datos.
+
+\subsection{Apache Lucene y Solr}
+
+Una de las grandes ventajas del sistema Solr es que posee una API (\textit{Application Programming Interface}) flexible con la que se puede interactuar mediante los lenguajes de programación Ruby y Python, así como también es posible comunicarnos mediante el paso de mensajes JSON (JavaScript Object Notation), de manera similar a muchas arquitecturas servidor/cliente en la red.
+
+\subsection{Apache OpenNLP}
+
+Esta herramienta utiliza una aproximación diferente a la que usa el Stanford CoreNLP.
+%
+Se trata de un sistema desarrollado en Java, que permite ser utilizado como una biblioteca Java. Además de esto, posee una interfaz de programación en línea (\textit{scripting}) que puede también usarse mediante la línea de comandos.
+%
+A pesar de encontrarse algo desfasada en comparación con el resto de opciones, permanece como una opción robusta y rápida de implementar.
+
+%\subsection{Apache UIMA}
+
+%Se observó otra herramienta Apache para el Procesamiento de Lenguaje Natural...
+
+%\subsection{FreeLing}
+%asd
+
+\subsection{GATE}
+
+El GATE (\textit{General Architecture for Text Engineering}) es un sistema de software libre con una gran capacidad de procesamiento de texto \cite{gate}.
+%
+Fue desarrollado inicialmente por un equipo base de 16 programadores \cite{gate_about}, empezando en 1995 como parte de un proyecto del EPSRC (Engineering and Physical Sciences Research Council), una organización basada en el Reino Unido con el objetivo de financiar la investigación científica en el país.
+%
+Dado el largo tiempo que lleva esta herramienta en desarrollo, que abarca más de dos décadas, cuenta con un amplio abanico de funcionalidades de procesamiento de texto.
+
+\subsection{NLTK, Natural Language Toolkit}
+
+El NLTK (\textit{Natural Language Toolkit}) es una biblioteca de Procesamiento de Lenguaje Natural que utiliza el lenguaje de programación Python \cite{bird09}.
+%
+NLTK es software libre, lo que permite a estudiantes y al personal académico realizar estudios con la herramienta sin necesidad de realizar una inversión económica.
+%
+Esta herramienta es también de código abierto, lo que lo hace ideal para expandir sus funcionalidades en caso de necesitarlo.
+%
+El hecho de estar implementada como una biblioteca Python reduce la curva de aprendizaje, y la acerca al mundo académico, cuya mayor parte de integrantes se encuentra familiarizado con este lenguaje de programación.
+
+\label{chosen-nlp-tool}
+\section{Herramienta de PLN elegida}
+
+Una razón para la elección de NLTK como herramienta es el gran soporte que tiene, debido a las dimensiones de su comunidad de usuarios. Es una de las herramientas de Procesamiento de Lenguaje Natural de mayor aceptación en el ámbito científico.
+
+Otra razón importante es el apoyo que proporciona el libro \textit{Natural Language Processing with Python}\ref{bird09}. Este libro tiene por autores a los creadores del NLTK, haciéndolo idóneo para comprender y utilizar todas las funcionalidades que aporta esta biblioteca.
+
+\section{Lenguaje de programación escogido}
+
+El código de las herramientas de Procesamiento de Lenguaje Natural desarrolladas en Java y C++ es compilado a un código máquina de bajo nivel, lo que le confiere una mayor rapidez de cómputo.
+
+Ésta amplia capacidad de procesamiento en comparación a herramientas para Python o Ruby es aprovechable ya sea en aumentar la cantidad de datos a procesar o reducir el tiempo que lleva el procesamiento de los mismos.
+
+Sin embargo, el que una herramienta esté diseñada para un lenguaje de éstas características tiene como consecuencia la reducción de flexibilidad inmediata de la herramienta, ya que el desarrollo de software en los lenguajes fuertemente tipados conlleva una mayor cantidad de tiempo a la hora de especificar la relación, jerarquía y tipado de los datos, con el fin de aprovechar el aumento en velocidad que ofrecen.
+
+Es por esta razón que se optó por lenguajes de guiones (\textit{scripting}), como Python o Ruby, que sin perder generalidad en cuanto a la resolución de problemas, y a pesar de tener una velocidad de cómputo más reducida, permiten el desarrollo de soluciones adaptadas a los problemas que surgen con una mayor flexibilidad y rapidez, ofreciendo además una mayor cantidad de funcionalidad estándar para el procesamiento de texto.
+
+Se decidió utilizar Python para complementar la elección de herramienta de PLN que se hizo, en este caso la biblioteca NLTK para Python, como se mencionó anteriormente (\ref{chosen-nlp-tool}).

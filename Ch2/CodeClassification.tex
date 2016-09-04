@@ -1,0 +1,25 @@
+\lhead{\emph{\ChapterFour{}}}
+
+\lstset{
+   language=Python
+}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función para cargar instancias de un archivo CSV.]
+def cargar_instancias_de_csv(ruta, formato=None):
+    """
+    Cargamos las instancias de un archivo CSV.
+
+    :param ruta: Ruta del archivo csv que se leerá.
+    :param formato: Formato 
+    :return: Una lista con cada una de las filas del csv.
+    """
+    instancias = []
+    with open('tfg.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            instancias.append((row['Clasificación'], row['Título'], row['Descripción']))
+    return instancias
+}
+\end{lstlisting}
+\end{minipage}
