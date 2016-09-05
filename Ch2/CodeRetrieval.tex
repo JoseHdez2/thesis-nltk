@@ -1,4 +1,5 @@
-\lhead{\emph{\ChapterFour{}}}
+\lhead{\emph{\ChapterTwo{}}}
+\label{code-retrieval}
 \lstset{
    language=Javascript
 }
@@ -116,9 +117,18 @@ Aplicamos las anteriores funciones en lo que viene a ser el bucle principal del 
 \begin{center}
 \begin{figure}[!ht]
   \caption{Vista en la que se muestran los metadatos de un TFG.}
-  \label{fig:metadata_view}
+  \label{fig:metadata-view}
   \centering
     \includegraphics[width=0.8\textwidth]{Images/metadata_view}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!ht]
+  \caption{Modelo DOM subyacente a la vista.}
+  \label{fig:metadata-view}
+  \centering
+    \includegraphics[width=0.8\textwidth]{Images/metadata_html}
 \end{figure}
 \end{center}
 
@@ -136,7 +146,7 @@ function scrapePageValue(str){
 \end{minipage}
 \end{center}
 
-Esta función se basa en la vista de la página para obtener el texto perteneciente a una etiqueta. Por ejemplo, para el caso de la Fig.\ref{fig:metadata_view}, si se le pasa \texttt{author} obtendrá \texttt{(Nombre del autor)}.
+Esta función se basa en la vista de la página para obtener el texto perteneciente a una etiqueta. Por ejemplo, para el caso de la Fig.\ref{fig:metadata-view}, si se la función recibe \texttt{author} como argumento, extraerá del DOM el valor \texttt{(Nombre del autor)}.
 
 % En caso de que no exista, la función devolverá una cadena estándar (en este caso "\texttt{---}") para evitar romper el flujo del programa.
 
@@ -157,11 +167,11 @@ function scrapePageValues(str){
 \end{minipage}
 \end{center}
 
-Definimos además una función similar a la anterior, con la diferencia de que inspecciona la página para encontrar múltiples datos definidos bajo el mismo nombre. Esto es importante dado que existen metadatos que están definidos bajo campos de mismo nombre, por ejemplo: dos campos de "tema" con distintos valores para expresar que un TFG forma parte de múltiples temas.
+Definimos además una función similar a la anterior, con la diferencia de que inspecciona la página para encontrar múltiples datos definidos bajo el mismo nombre. Esto es importante dado que existen metadatos que están definidos bajo campos de mismo nombre, por ejemplo: dos campos de \say{tema} con distintos valores, para expresar que un TFG forma parte de múltiples temas.
 
 \begin{center}
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[caption=Función de concatenación de enlace.]
+\begin{lstlisting}[caption=Concatenación de la URL absoluta con el enlace relativo.]
 function completeLink(currentValue, index, array){
   return 'http://riull.ull.es'.concat(currentValue).concat('?show=full');
 }
@@ -169,14 +179,18 @@ function completeLink(currentValue, index, array){
 \end{minipage}
 \end{center}
 
-% Uno de los problemas fue la imposibilidad de realizar una recurrencia sin blabla, por eso se recurrió a crear una función externa
+Esta función se utiliza para poder navegar a todos los enlaces relativos que se obtienen de la extracción de la vista de navegación.
+%
+%Los enlaces obtenidos en la extracción son comandos PHP y por lo tanto no contienen la URL absoluta hacia la que hay que navegar.
 
-\begin{center}
-\begin{minipage}{\linewidth}
-\begin{lstlisting}[caption=Función tipo que permite la recurrencia con CasperJS.]
-function functionOutsideLoop(){
-  links.concat(casper.evaluate(scrapeLinks));
-}
-\end{lstlisting}
-\end{minipage}
-\end{center}
+%\begin{center}
+%\begin{minipage}{\linewidth}
+%\begin{lstlisting}[caption=Función tipo que permite la recurrencia con CasperJS.]
+%function functionOutsideLoop(){
+%  links.concat(casper.evaluate(scrapeLinks));
+%}
+%\end{lstlisting}
+%\end{minipage}
+%\end{center}
+
+% Dado que CasperJS es un sistema que utiliza el código JavaScript que se le pasa como instrucciones, es difícil de realizar funciones recursivas, y se debe recurrir a funciones externas que 

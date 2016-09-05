@@ -65,9 +65,9 @@
 \listoffigures  % Write out the List of Figures
 
 %% ----------------------------------------------------------------
-\btypeout{Índice de algoritmos}
-\addtotoc{Índice de algoritmos}
-\lhead{\emph{Índice de códigos}}  % Set the left side page header to "List of Listings"
+\btypeout{Lista de listados}
+\addtotoc{Lista de listados}
+\lhead{\emph{Lista de listados}}  % Set the left side page header to "List of Listings"
 \lstlistoflistings  % Write out the List of Listings
 
 %% ----------------------------------------------------------------
@@ -89,18 +89,23 @@
 % with \newpage...
 
 \lhead{\emph{\ChapterOne{}}}
+\chaptermark{\emph{\ChapterOne{}}}
 \input{Chapters/Chapter1} % Introduction
 
 \lhead{\emph{\ChapterTwo{}}}
+\chaptermark{\emph{\ChapterTwo{}}}
 \input{Chapters/Chapter2} % Background Theory 
 
 \lhead{\emph{\ChapterThree{}}}
+\chaptermark{\emph{\ChapterThree{}}}
 \input{Chapters/Chapter3} % Experimental Setup
 
 \lhead{\emph{\ChapterFour{}}}
+\chaptermark{\emph{\ChapterFour{}}}
 \input{Chapters/Chapter4.tex} % Experiment 1
 
 \lhead{\emph{\ChapterFive{}}}
+\chaptermark{\emph{\ChapterFive{}}}
 \input{Chapters/Chapter5} % Experiment 2
 
 %% ----------------------------------------------------------------
@@ -110,9 +115,9 @@
 
 \appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
 
-\input{Appendices/AppendixA}	% Abreviaturas
+\input{Appendices/Abbreviations}	% Abreviaturas
 
-\input{Appendices/AppendixB} % Glosario
+\input{Appendices/Glossary} % Glosario
 
 %\input{Appendices/AppendixC} % Appendix Title
 

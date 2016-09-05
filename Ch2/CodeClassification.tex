@@ -1,17 +1,16 @@
-\lhead{\emph{\ChapterFour{}}}
-
+\lhead{\emph{\ChapterTwo{}}}
 \lstset{
    language=Python
 }
 
+\begin{center}
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption=Función para cargar instancias de un archivo CSV.]
-def cargar_instancias_de_csv(ruta, formato=None):
+def cargar_instancias_de_csv(ruta):
     """
     Cargamos las instancias de un archivo CSV.
 
     :param ruta: Ruta del archivo csv que se leerá.
-    :param formato: Formato 
     :return: Una lista con cada una de las filas del csv.
     """
     instancias = []
@@ -20,6 +19,216 @@ def cargar_instancias_de_csv(ruta, formato=None):
         for row in reader:
             instancias.append((row['Clasificación'], row['Título'], row['Descripción']))
     return instancias
-}
 \end{lstlisting}
 \end{minipage}
+\end{center}
+
+Esta función se utiliza para la carga en memoria de las instancias a clasificar.%, siendo en este caso c
+%
+Las instancias ya deben de haber sido descargadas en un CSV con el formato apropiado, tal y como se explicó en el apartado \ref{code-retrieval}.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que recopila un conjunto de palabras comunes]
+def cadena_de_palabras(instancias, indices_de_textos):
+    """
+    Creamos una larga cadena con todas las palabras
+    separadas entre si por espacios.
+
+    :param instancias: Listas que representan a los elementos a clasificar.
+    :param indices_de_textos: Lista con los indices de los elementos de las
+    instancias que se van a extraer.
+    :return: Una lista con cada una de las filas del csv.
+    """
+    larga_cadena = ''
+    for row in instancias:
+        for indice in indices_de_textos:
+            larga_cadena += ' '
+            larga_cadena += row[indice]
+    return larga_cadena
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Esta función obtiene las características textuales y las guarda en un conjunto comunal de palabras para luego determinar las más utilizadas.
+%
+En este caso, toman el texto tanto del título de un TFG como de su descripción si la hay, y los suma al dicho conjunto de palabras comunes mencionado.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que retorna palabras alfanuméricas]
+def palabras_alfanum(lista_palabras):
+    """
+    Eliminamos del conjunto global de palabras
+    aquellas cadenas que no sean alfanumericas.
+    :param lista_palabras: Una lista de palabras
+    :return: Una lista con las cadenas que son alfanumericas.
+    """
+    alfanum = [];
+    for palabra in lista_palabras:
+        if re.match('\w+', palabra):
+            alfanum.append(palabra)
+    return alfanum
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Esta función realiza una criba del conjunto de palabras obtenido en la función \texttt{cadena\_de\_palabras}, descartando aquéllas palabras que contengan algún carácter no alfanumérico.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que separa las instancias con clasificación inválida.]
+def clasificaciones_invalidas(instancias,clases_invalidas=["null"], ind_clase=0):
+    """
+    Separamos las instancias con una clasificación válida de las que no la tienen.
+
+    :param instancias: Instancias a separar.
+    :param ind_clase: Indice de la instancia que contiene su clasificación.
+    :param clases_invalidas: Valores de clasificación inválidos.
+    :return: En orden: las instancias inválidas, y las instancias válidas.
+    """
+    invalidas = [];
+    for c in instancias:
+        if (c[ind_clase] in clases_invalidas):
+            invalidas.append(c)
+            instancias.remove(c)
+    return invalidas, instancias
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Esta función recibe un conjunto de instancias, y las separa según la clase a la que pertenezca. A éste efecto, se proporciona como argumento una lista de las clases que se consideran inválidas.
+%
+La utilidad de esta función es que nos permite descartar instancias que no hayan sido clasificadas correctamente en el Repositorio Institucional de la ULL.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que extrae las características de un texto.]
+def rasgos_del_texto(texto, listado_palabras):
+    """
+    A partir de un texto, creamos un hash con las caracteristicas
+    de dicho texto. En este caso si contiene cada una de las palabras.
+
+    :param texto: Un texto a clasificar
+    :param listado_palabras: Un listado de palabras globales que sirve
+        para definir las caracteristicas del texto.
+    :return: Un diccionario con las caracteristicas del texto.
+    """
+    if(not texto):
+        print("Texto nulo")
+        return None
+    palabras_del_texto = set(texto)
+    caracteristicas = {}
+    for p in listado_palabras:
+        caracteristicas['contiene({})'.format(p)] = (p in palabras_del_texto)
+    return caracteristicas
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Esta función recibe un texto y entrega las características del mismo. En este caso consideramos como características el hecho de que el texto contenga o no cada una de las palabras más comunes consideradas. Para ello, también se le proporciona esta lista de palabras comunes a esta función.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que retorna un listado de las palabras comunes.]
+def listado_palabras(instancias, ind_texto=1, ind_clase=0, invalidos=["null"]):
+    """
+    :param ruta: Ruta del CSV con las instancias a clasificar.
+    :param n: Numero de palabras mas comunes a tener en cuenta.
+    Cargar las instancias de un CSV, ...
+    """
+    # Creamos una larga cadena con todas las palabras
+    # separadas entre si por espacios.
+    conjunto_palabras = clas.cadena_de_palabras(instancias, [2])
+
+    # De esa larga cadena, obtenemos una lista de palabras
+    # gracias al tokenizador, que sabe donde cortar.
+    conjunto_palabras = nltk.word_tokenize(conjunto_palabras)
+
+    # print(conjunto_palabras)
+
+    # Eliminamos del conjunto global de palabras
+    # aquellas cadenas que no sean alfanumericas.
+    conjunto_palabras = clas.palabras_alfanum(conjunto_palabras)
+
+    # Hacemos una distribucion de frecuencia de las palabras en el corpus.
+    listado_palabras = nltk.FreqDist(w.lower() for w in conjunto_palabras)
+
+    return listado_palabras
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Función que retorna un listado de las palabras comunes a todas las instancias a clasificar. Hace uso de varias de las funciones anteriormente expuestas para procesar el conjunto de palabras que retorna.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Función que clasifica una instancia en base a las palabras comunes que contiene]
+def clasificacion_binaria_palabras(distr_frec, instancias, n, clases_invalidas):
+    """
+    :param distr_frec: Ruta del CSV con las instancias a clasificar.
+    :param n: Numero de palabras mas comunes a tener en cuenta.
+    :param clases_invalidas: Las instancias que las tengan no estan clasificadas.
+    """
+
+    # Escogemos las N palabras mas comunes.
+    mas_comunes = list(distr_frec)[:n]
+
+    invalidas, validas = clas.clasificaciones_invalidas(instancias, clases_invalidas)
+
+    # A partir de un texto, creamos un hash con las caracteristicas
+    # de dicho texto. En este caso si contiene cada una de las palabras comunes.
+    inst_validas = [(clas.rasgos_del_texto(d, mas_comunes), c) for (c,t,d) in validas]
+    inst_invalidas = [(clas.rasgos_del_texto(d, mas_comunes), c) for (c,t,d) in invalidas]
+    half = math.floor(len(instancias) / 2)
+    train_set, test_set = inst_validas[:half], inst_validas[half:]
+    # train_set, test_set = inst_validas, inst_invalidas
+    classifier = nltk.NaiveBayesClassifier.train(train_set)
+
+    resultado = {}
+    resultado['precision'] = nltk.classify.accuracy(classifier, test_set)
+    # print("print(nltk.classify.accuracy(classifier, test_set)):" + str(resultado['precision'])
+    return resultado
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Función que clasifica las instancias en base a las N palabras más comunes de entre las palabras que se encuentran en el conjunto de las instancias. La clasificación se lleva a cabo utilizando un clasificador bayesiano ingenuo que toma como características la presencia o ausencia de cada palabra común en la instancia a clasificar.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption=Batería de pruebas de clasificación]
+# Cargamos las instancias de un archivo CSV.
+instancias = clas1.cargar_instancias_de_csv("tfg.csv")
+
+listado_palabras = clas2.listado_palabras(instancias)
+
+clases_invalidas = ["null", "Informática", "Logicales de ordenadores",
+    "Logicales de ordenador"]
+
+str = []
+plot_dat_x = []
+plot_dat_y = []
+for i in range(100,2000,100):
+    print(i)
+    instancias2 = list(instancias)
+    res = {}
+    plot_dat_x.append(i)
+    res = clas2.clasificacion_binaria_palabras(listado_palabras, instancias2, i, clases_invalidas)
+    res['pal_comunes'] = i
+    print(res.get('precision'))
+    plot_dat_y.append(res.get('precision'))
+    str.append(res)
+print(str)
+
+plt.plot(plot_dat_x, plot_dat_y)
+plt.ylabel('Número de palabras comunes consideradas')
+plt.ylabel('Precisión del clasificador')
+plt.show()
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Éste es el código que ejecuta la batería de pruebas de clasificación. Se pasan como clases inválidas las expuestas, por considerarse demasiado amplias. Además se proporciona el valor de corte de N palabras comunes, que iniciará en 100, y cambiará en incrementos de 100 hasta alcanzar las 2000 palabras comunes.
+%
+Esto se ejecuta con el objetivo de determinar el comportamiento del clasificador para distintos valores de corte. Finalmente se genera y muestra una gráfica de la precisión obtenida por el clasificador.
