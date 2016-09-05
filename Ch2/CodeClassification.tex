@@ -14,7 +14,7 @@ def cargar_instancias_de_csv(ruta):
     :return: Una lista con cada una de las filas del csv.
     """
     instancias = []
-    with open('tfg.csv') as csvfile:
+    with open(ruta) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             instancias.append((row['Clasificación'], row['Título'], row['Descripción']))
@@ -80,7 +80,7 @@ Esta función realiza una criba del conjunto de palabras obtenido en la función
 \begin{lstlisting}[caption=Función que separa las instancias con clasificación inválida.]
 def clasificaciones_invalidas(instancias,clases_invalidas=["null"], ind_clase=0):
     """
-    Separamos las instancias con una clasificación válida de las que no la tienen.
+    Separamos las instancias con una clasificacion valida de las que no la tienen.
 
     :param instancias: Instancias a separar.
     :param ind_clase: Indice de la instancia que contiene su clasificación.

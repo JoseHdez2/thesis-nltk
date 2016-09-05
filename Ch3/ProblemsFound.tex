@@ -15,6 +15,10 @@ Como se comentó en el apartado \ref{classification-conclusions}, en muchos caso
 %
 Esto redujo drásticamente la capacidad de clasificación sobre los metadatos de los TFGs en comparación con el caso en que todos los documentos tuviesen un resumen o abstracto asignado en el servicio.
 
+Las bajas tasas de acierto resultan poco alentadoras, pero se deben a la presencia de clases con pocas entidades representativas, así como la falta de información individual sobre cada TFG en forma de metadatos. Esto se puede paliar ignorando las clases que no posean un número mínimo de instancias, centrándonos en clasificar aquéllas clases que podamos caracterizar correctamente gracias a su número elevado de integrantes. 
+%
+La otra solución es la obtención de más información característica sobre cada instancia individual, lo que se consigue extrayendo información textual de los documentos infijos (extensión PDF) aparte de sus metadatos.
+
 \subsection{Realización de la memoria}
 
 Por defecto \textit{LaTeX} no permite el uso de tildes y caracteres españoles, por lo que fue necesario incluir el paquete \texttt{inputenc} y \texttt{babel} en la configuración del proyecto, con las opciones \texttt{utf8} y \texttt{spanish}, respectivamente.
